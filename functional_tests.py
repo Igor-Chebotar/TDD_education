@@ -4,7 +4,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 import unittest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-
+import time
 
 class NewVisitorTest(unittest.TestCase):
     '''тест нового посетителя'''
@@ -28,10 +28,9 @@ class NewVisitorTest(unittest.TestCase):
         # неотложных дел
         self.assertIn('To-Do', self.browser.title)
         header_text = self.browser.find_element(By.TAG_NAME, 'h1').text
-        self.fail('Закончить тест!')
 
         # Ей сразу же предлагается ввести элемент списка
-        inputbox = self.browser.find_element(By.Id, 'id_new_item')
+        inputbox = self.browser.find_element(By.ID, 'id_new_item')
         self.assertEqual(
             inputbox.get_attribute('placeholder'),
             'Enter a to-do item'
@@ -46,9 +45,10 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
 
         table = self.browser.find_element(By.ID, 'id_list_table')
-        rows = table.find_element(By.TAG_NAME, 'tr')
+        rows = table.find_elements(By.TAG_NAME, 'tr')
         self.assertTrue(
-            any(row.text == '1: Купить павлиньи перья' for row in rows)
+            any(row.text == '1: Купить павлиньи перья' for row in rows),
+            "Новый элемент списка не появился в таблице"
         )
         # Текстовое поле по-прежнему приглашает ее добавить еще один элемент.
         # Она вводит "Сделать мушку из павлиньих перьев"
