@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.firefox.options import Options
 
 MAX_WAIT = 10
 
@@ -16,7 +17,9 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         '''установка'''
-        self.browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), )
+        options = Options()
+        options.headless = True
+        self.browser = webdriver.Firefox(options=options, service=FirefoxService(GeckoDriverManager().install()), )
         staging_server = os.environ.get('STAGING_SERVER')
         if staging_server:
             self.live_server_url = 'http://' + staging_server
