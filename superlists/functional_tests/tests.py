@@ -1,9 +1,10 @@
+import time
+import os
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.common.exceptions import WebDriverException
 
@@ -16,7 +17,10 @@ class NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
         '''установка'''
         self.browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), )
-        self.browser.set_window_size(960, 540)
+        staging_server = os.environ.get('STAGING_SERVER')
+        if staging_server:
+            self.live_server_url = 'http://' + staging_server
+
 
     def tearDown(self):
         '''демонтаж'''
@@ -149,3 +153,4 @@ class NewVisitorTest(StaticLiveServerTestCase):
             512,
             delta=10
         )
+
