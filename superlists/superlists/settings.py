@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-_8w(zgz@gvjwa@s#xsli3tay9p90rce*5++%557)mp^^vclad4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -121,3 +121,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CSRF_TRUSTED_ORIGINS = ['http://tdd-test-project.ru']
