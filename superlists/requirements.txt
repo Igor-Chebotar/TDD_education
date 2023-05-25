@@ -2,3 +2,4 @@ django
 selenium
 webdriver_manager
 gunicorn
+fabric3
