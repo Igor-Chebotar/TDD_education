@@ -12,6 +12,12 @@
 
 -Unittest
 
+-Nginx
+
+-Gunicorn
+
+-Fabric
+
 -Встраиваемая СУБД SQLite, для создания и работы с базами данных
 
 -HTML/CSS
