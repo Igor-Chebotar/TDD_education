@@ -12,6 +12,8 @@
 
 -Unittest
 
+-Linux
+
 -Nginx
 
 -Gunicorn
